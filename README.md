@@ -50,7 +50,7 @@ The plugin works with **English** and **Turkish** words. You should add words sp
 
 Code block that needs to be edited:
 
-https://github.com/tedem/mybb-headlize/blob/8d9c462bc3f1c4c51f3cfdb7f6f1fbfc522872ec/inc/plugins/headlize.php#L161-L168
+https://github.com/tedem/mybb-headlize/blob/6f4bf9b563d86b4a914bf147f6015e91fa993474/inc/plugins/headlize.php#L161-L168
 
 ### Ignoring
 
