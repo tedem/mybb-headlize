@@ -84,7 +84,9 @@ $rules = [
         'remove_inheritdoc' => true
     ],
     'phpdoc_add_missing_param_annotation' => true,
+    'phpdoc_annotation_without_dot' => false,
     'phpdoc_return_self_reference' => true,
+    'phpdoc_summary' => false,
     'phpdoc_types_order' => [
         'null_adjustment' => 'always_last',
         'sort_algorithm' => 'alpha'
