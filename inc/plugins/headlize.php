@@ -159,12 +159,17 @@ function headlize_convert_title(&$datahandler): void
 function headlize_title_case($title): string
 {
     $small_words = [
-        // English
+        // English (APA 7th Edition)
+        // Source: American Psychological Association (2020). Publication Manual of the American Psychological Association (7th ed.), Section 6.17: Title Case.
+        // Additional References: Oxford English Dictionary, Merriam-Webster Dictionary
         'a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor',
-        'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet',
-        // Turkish
-        'ama', 'bu', 'da', 'de', 'için', 'ile', 'ise', 'ki', 'mi', 'mu', 'mü',
-        'o', 'şu', 've', 'veya', 'ya',
+        'of', 'on', 'or', 'per', 'so', 'the', 'to', 'up', 'via', 'yet',
+
+        // Turkish (TDK)
+        // Source: Turkish Language Association (TDK) — Writing Guide: Conjunctions and Postpositions (https://www.tdk.gov.tr/)
+        'ama', 'ancak', 'da', 'de', 'diye', 'gibi', 'göre', 'için', 'ile',
+        'ise', 'kadar', 'ki', 'mi', 'mı', 'mu', 'mü', 've', 'veya', 'ya', 'ya da',
+        'üzere', 'sonra', 'önce',
     ];
 
     $words = explode(' ', mb_strtolower($title));
