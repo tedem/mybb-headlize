@@ -7,3 +7,4 @@
 # Dependency directories and files
 /vendor
 composer.lock
+.php-cs-fixer.cache
