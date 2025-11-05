@@ -53,7 +53,7 @@ HTML;
         'author' => TEDEM_HEADLIZE_AUTHOR,
         'authorsite' => 'https://tedem.dev/',
         'version' => TEDEM_HEADLIZE_VERSION,
-        'codename' => TEDEM_HEADLIZE_AUTHOR.'_'.TEDEM_HEADLIZE_ID,
+        'codename' => TEDEM_HEADLIZE_AUTHOR . '_' . TEDEM_HEADLIZE_ID,
         'compatibility' => '18*',
     ];
 }
@@ -103,7 +103,7 @@ function headlize_uninstall(): void
     $cache->update(TEDEM_HEADLIZE_AUTHOR, $plugins);
 
     if (\count($plugins) === 0) {
-        $db->delete_query('datacache', "title='".TEDEM_HEADLIZE_AUTHOR."'");
+        $db->delete_query('datacache', "title='" . TEDEM_HEADLIZE_AUTHOR . "'");
     }
 }
 
@@ -112,7 +112,7 @@ function headlize_uninstall(): void
  */
 function headlize_activate(): void
 {
-    //
+
 }
 
 /**
@@ -120,7 +120,7 @@ function headlize_activate(): void
  */
 function headlize_deactivate(): void
 {
-    //
+
 }
 
 /**
@@ -129,7 +129,7 @@ function headlize_deactivate(): void
  * This function modifies the subject of a thread or post during insertion or update
  * by converting it to title case using the `headlize_title_case` function.
  *
- * @param  object  $datahandler  The data handler object that contains thread and post data.
+ * @param object $datahandler The data handler object that contains thread and post data.
  */
 function headlize_convert_title(&$datahandler): void
 {
@@ -153,7 +153,8 @@ function headlize_convert_title(&$datahandler): void
 /**
  * Converts a given title to title case, with specific rules for small words and special cases.
  *
- * @param  string  $title  The title to be converted.
+ * @param string $title The title to be converted.
+ *
  * @return string The title converted to title case.
  */
 function headlize_title_case($title): string
@@ -221,12 +222,12 @@ function headlize_donation(): string
     $BMC = '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>';
     $KOFI = '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>';
 
-    $close_link = 'index.php?module=config-plugins&'.TEDEM_HEADLIZE_AUTHOR.'-'.TEDEM_HEADLIZE_ID.'=deactivate-donation&my_post_key='.$mybb->post_code;
-    $close_button = ' &mdash; <a href="'.$close_link.'"><b>Close Donation</b></a>';
+    $close_link = 'index.php?module=config-plugins&' . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID . '=deactivate-donation&my_post_key=' . $mybb->post_code;
+    $close_button = ' &mdash; <a href="' . $close_link . '"><b>Close Donation</b></a>';
 
-    $message = '<b>Donation:</b> Support for new plugins, themes, etc. via '.$BMC.' or '.$KOFI.$close_button;
+    $message = '<b>Donation:</b> Support for new plugins, themes, etc. via ' . $BMC . ' or ' . $KOFI . $close_button;
 
-    return '<div style="margin-top: 1em;">'.$message.'</div>';
+    return '<div style="margin-top: 1em;">' . $message . '</div>';
 }
 
 /**
@@ -268,7 +269,7 @@ function headlize_donation_edit(): void
 
         $plugins = $cache->read(TEDEM_HEADLIZE_AUTHOR);
 
-        if ($mybb->get_input(TEDEM_HEADLIZE_AUTHOR.'-'.TEDEM_HEADLIZE_ID) === 'deactivate-donation') {
+        if ($mybb->get_input(TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID) === 'deactivate-donation') {
             $plugins[TEDEM_HEADLIZE_ID]['donation'] = 0;
 
             $cache->update(TEDEM_HEADLIZE_AUTHOR, $plugins);
