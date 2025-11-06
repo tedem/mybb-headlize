@@ -17,6 +17,11 @@ if (! \defined('IN_MYBB')) {
     exit(headlize_translate('direct_access_error'));
 }
 
+// Check PHP version
+if (version_compare(PHP_VERSION, '7.4.0', '<')) {
+    exit(\sprintf(headlize_translate('php_version_error'), PHP_VERSION));
+}
+
 // Constants
 \define('TEDEM_HEADLIZE_ID', 'headlize');
 \define('TEDEM_HEADLIZE_NAME', ucfirst(TEDEM_HEADLIZE_ID));
@@ -313,6 +318,7 @@ function headlize_translate(string $key): string
     // Internationalized texts
     static $texts = [
         'direct_access_error' => '(-_*) This file cannot be accessed directly.',
+        'php_version_error' => '(-_*) Headlize requires PHP version 7.4.0 or higher. You are running PHP version %s.',
         'plugin_description' => 'Automatically converts and saves thread titles in APA-style title case.',
         'donation_message' => 'If you find this plugin useful, consider supporting its development via %s or %s %s',
         'donation_flash_success' => 'The donation message has been successfully closed.',

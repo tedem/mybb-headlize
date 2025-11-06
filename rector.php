@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
-use Rector\Set\ValueObject\SetList;
 use Rector\ValueObject\PhpVersion;
+use Rector\Set\ValueObject\SetList;
+use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
+use Rector\DeadCode\Rector\If_\UnwrapFutureCompatibleIfPhpVersionRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -20,5 +21,6 @@ return RectorConfig::configure()
     ])
     ->withSkip([
         RemoveUnusedVariableAssignRector::class,
+        UnwrapFutureCompatibleIfPhpVersionRector::class,
     ])
     ->withPhpVersion(PhpVersion::PHP_74);
