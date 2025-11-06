@@ -212,10 +212,9 @@ function headlize_title_case($title): string
         }
     }
 
-    // Remove trailing period from the last word if exists
-    if (mb_substr(end($words), -1) === '.') {
-        $words[\count($words) - 1] = mb_substr(end($words), 0, mb_strlen(end($words)) - 1);
-    }
+    // Remove trailing dots (., .., ...) from the last word if they exist
+    $lastWordKey = \count($words) - 1;
+    $words[$lastWordKey] = rtrim($words[$lastWordKey], '.');
 
     return implode(' ', $words);
 }
