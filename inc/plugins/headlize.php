@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 // Disallow direct access to this file for security reasons
 if (! \defined('IN_MYBB')) {
-    exit('(-_*) This file cannot be accessed directly.');
+    exit(headlize_translate('direct_access_error'));
 }
 
 // Constants
@@ -36,11 +36,8 @@ $plugins->add_hook('datahandler_post_update', 'headlize_convert_title');
  */
 function headlize_info(): array
 {
-    $description = <<<'HTML'
-<div style="margin-top: 1em;">
-    Automatically converts and saves thread titles in APA-style title case.
-</div>
-HTML;
+    $description = headlize_translate('plugin_description');
+    $description = '<div style="margin-top: 1em;">' . $description . '</div>';
 
     if (headlize_donation_status()) {
         $description .= headlize_donation();
@@ -219,13 +216,15 @@ function headlize_donation(): string
 
     headlize_donation_edit();
 
-    $BMC = '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>';
-    $KOFI = '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>';
-
     $close_link = 'index.php?module=config-plugins&' . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID . '=deactivate-donation&my_post_key=' . $mybb->post_code;
-    $close_button = ' &mdash; <a href="' . $close_link . '"><b>Close Donation</b></a>';
+    $close_button = '&mdash; <a href="' . $close_link . '"><b>Close Donation</b></a>';
 
-    $message = '<b>Donation:</b> Support for new plugins, themes, etc. via ' . $BMC . ' or ' . $KOFI . $close_button;
+    $message = sprintf(
+        headlize_translate('donation_message'),
+        '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>',
+        '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>',
+        $close_button
+    );
 
     return '<div style="margin-top: 1em;">' . $message . '</div>';
 }
@@ -274,8 +273,31 @@ function headlize_donation_edit(): void
 
             $cache->update(TEDEM_HEADLIZE_AUTHOR, $plugins);
 
-            flash_message('The donation message has been successfully closed.', 'success');
+            flash_message(headlize_translate('donation_flash_success'), 'success');
             admin_redirect('index.php?module=config-plugins');
         }
     }
+}
+
+/**
+ * Retrieves internationalized text for the plugin.
+ *
+ * This function returns the corresponding text for a given key.
+ * If the key does not exist, it returns the key itself.
+ *
+ * @param string $key The key for which to retrieve the text.
+ *
+ * @return string The internationalized text corresponding to the key.
+ */
+function headlize_translate(string $key): string
+{
+    // Internationalized texts
+    static $texts = [
+        'direct_access_error' => '(-_*) This file cannot be accessed directly.',
+        'plugin_description' => 'Automatically converts and saves thread titles in APA-style title case.',
+        'donation_message' => 'If you find this plugin useful, consider supporting its development via %s or %s %s',
+        'donation_flash_success' => 'The donation message has been successfully closed.',
+    ];
+
+    return $texts[$key] ?? $key;
 }
