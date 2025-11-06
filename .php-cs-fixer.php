@@ -50,6 +50,7 @@ $rules = [
         'attribute_placement' => 'ignore',
         'on_multiline' => 'ensure_fully_multiline'
     ],
+    'native_function_invocation' => true,
     'no_unreachable_default_argument_value' => true,
     'regular_callable_call' => true,
     // Import - https://cs.symfony.com/doc/rules/index.html#import
