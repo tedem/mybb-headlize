@@ -219,7 +219,7 @@ function headlize_donation(): string
     $close_link = 'index.php?module=config-plugins&' . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID . '=deactivate-donation&my_post_key=' . $mybb->post_code;
     $close_button = '&mdash; <a href="' . $close_link . '"><b>Close Donation</b></a>';
 
-    $message = sprintf(
+    $message = \sprintf(
         headlize_translate('donation_message'),
         '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>',
         '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>',
