@@ -156,7 +156,7 @@ function headlize_convert_title(&$datahandler): void
  */
 function headlize_title_case($title): string
 {
-    $small_words = [
+    $smallWords = [
         // English (APA 7th Edition)
         // Source: American Psychological Association (2020). Publication Manual of the American Psychological Association (7th ed.), Section 6.17: Title Case.
         // Additional References: Oxford English Dictionary, Merriam-Webster Dictionary
@@ -170,7 +170,7 @@ function headlize_title_case($title): string
         'üzere', 'sonra', 'önce',
     ];
 
-    $title_case_exceptions = [
+    $titleCaseExceptions = [
         // Common acronyms and abbreviations
         'API', 'ASCII', 'CPU', 'CSS', 'DNS', 'FTP', 'GPU', 'GUI', 'HTTP', 'HTTPS',
         'ID', 'IDE', 'IP', 'LAN', 'OS', 'RAM', 'ROM', 'SDK', 'SQL', 'SSH',
@@ -197,7 +197,7 @@ function headlize_title_case($title): string
         }
 
         // Preserve exceptions
-        foreach ($title_case_exceptions as $exception) {
+        foreach ($titleCaseExceptions as $exception) {
             if (mb_strtolower($word) === mb_strtolower($exception)) {
                 // Preserve the original form as defined in the exceptions list
                 $words[$index] = $exception;
@@ -207,7 +207,7 @@ function headlize_title_case($title): string
         }
 
         // Capitalize all words except small words
-        if ($index === 0 || $index === \count($words) - 1 || ! \in_array($word, $small_words)) {
+        if ($index === 0 || $index === \count($words) - 1 || ! \in_array($word, $smallWords)) {
             $words[$index] = ucfirst($word);
         }
     }
@@ -235,14 +235,14 @@ function headlize_donation(): string
 
     headlize_donation_edit();
 
-    $close_link = 'index.php?module=config-plugins&' . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID . '=deactivate-donation&my_post_key=' . $mybb->post_code;
-    $close_button = '&mdash; <a href="' . $close_link . '"><b>Close Donation</b></a>';
+    $closeLink = 'index.php?module=config-plugins&' . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID . '=deactivate-donation&my_post_key=' . $mybb->post_code;
+    $closeButton = '&mdash; <a href="' . $closeLink . '"><b>Close Donation</b></a>';
 
     $message = \sprintf(
         headlize_translate('donation_message'),
         '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>',
         '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>',
-        $close_button
+        $closeButton
     );
 
     return '<div style="margin-top: 1em;">' . $message . '</div>';
