@@ -246,7 +246,7 @@ function headlize_donation_status(): bool
 
     $donation = $cache->read(TEDEM_HEADLIZE_AUTHOR);
 
-    return isset($donation[TEDEM_HEADLIZE_ID]['donation']) && $donation[TEDEM_HEADLIZE_ID]['donation'] === 1;
+    return ($donation[TEDEM_HEADLIZE_ID]['donation'] ?? 0) === 1;
 }
 
 /**
