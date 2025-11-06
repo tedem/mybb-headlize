@@ -192,9 +192,9 @@ function headlize_title_case($title): string
         }
     }
 
-    // Preserve the last word's punctuation
-    if (str_ends_with(end($words), '.')) {
-        $words[\count($words) - 1] = mb_substr(end($words), 0, -1);
+    // Remove trailing period from the last word if exists
+    if (mb_substr(end($words), -1) === '.') {
+        $words[\count($words) - 1] = mb_substr(end($words), 0, mb_strlen(end($words)) - 1);
     }
 
     return implode(' ', $words);
