@@ -170,6 +170,22 @@ function headlize_title_case($title): string
         'üzere', 'sonra', 'önce',
     ];
 
+    $title_case_exceptions = [
+        // Common acronyms and abbreviations
+        'API', 'ASCII', 'CPU', 'CSS', 'DNS', 'FTP', 'GPU', 'GUI', 'HTTP', 'HTTPS',
+        'ID', 'IDE', 'IP', 'LAN', 'OS', 'RAM', 'ROM', 'SDK', 'SQL', 'SSH',
+        'TCP', 'UDP', 'UI', 'URL', 'USB', 'UX', 'VPN', 'WiFi', 'XML',
+
+        // Programming languages and technologies
+        'C', 'C++', 'C#', 'CSS3', 'HTML', 'HTML5', 'JavaScript', 'JSON', 'PHP',
+
+        // Frameworks and libraries
+        'AJAX', 'ASP.NET', 'Django', 'jQuery', 'Node.js', 'React', 'Vue.js',
+
+        // Open-source projects and platforms
+        'GitHub', 'MyBB', 'MySQL', 'OpenSSL', 'PostgreSQL', 'WordPress',
+    ];
+
     $words = explode(' ', mb_strtolower($title));
 
     foreach ($words as $index => $word) {
@@ -180,13 +196,17 @@ function headlize_title_case($title): string
             continue;
         }
 
-        // Preserve mybb as MyBB
-        if (preg_match('/^mybb$/', $word)) {
-            $words[$index] = 'MyBB';
+        // Preserve exceptions
+        foreach ($title_case_exceptions as $exception) {
+            if (mb_strtolower($word) === mb_strtolower($exception)) {
+                // Preserve the original form as defined in the exceptions list
+                $words[$index] = $exception;
 
-            continue;
+                continue 2; // skip to next word
+            }
         }
 
+        // Capitalize all words except small words
         if ($index === 0 || $index === \count($words) - 1 || ! \in_array($word, $small_words)) {
             $words[$index] = ucfirst($word);
         }
