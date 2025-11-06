@@ -7,28 +7,54 @@
 
 # Headlize for MyBB
 
-Automatically converts and saves thread titles in APA-style title case.
+**Headlize** is a MyBB plugin that automatically converts and saves thread titles into **APA-style title case**.
+This ensures consistent, professional-looking thread titles throughout your forum.
 
-**Related source:** https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case
+**Official reference for APA title case:**
+[APA Title Case Guidelines](https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case)
 
-Entered title:
+## Features
 
-```
+- Converts thread titles to APA-style title case automatically.
+- Ignores words enclosed between double underscores (`__word__`) to preserve specific terms.
+- Saves the formatted title directly in the MyBB database.
+- Supports acronyms, technical terms, and common exceptions to ensure correct capitalization (e.g., `API`, `PHP`, `MyBB`).
+
+---
+
+## How It Works
+
+The plugin processes thread titles in a few steps to ensure APA-style title case while preserving special terms.
+
+### Step 1: User enters a title
+
+Example user input:
+
+```text
 this title was created as a test for the mybb __headlize__ plugin
 ```
 
-Format saved in the database:
+### Step 2: Headlize applies title case
 
-```
+- Converts major words to APA-style title case.
+- Preserves words from the exceptions list (acronyms, technical terms, frameworks, etc.).
+- Leaves words wrapped in double underscores (`__`) unchanged.
+
+### Step 3: Result saved to the database
+
+Formatted title saved in the database:
+
+```text
 This Title Was Created as a Test for the MyBB headlize Plugin
 ```
 
-Words written between two underscores (`__`) are ignored, such as `__headlize__`.
+✅ **Note:** MyBB is preserved as defined in the exceptions list, and `__headlize__` remains lowercase because it was wrapped in double underscores.
 
 ## Details
 
-- **Version:** 1.0.1
-- **MyBB Versions:** 1.8.x
+- **Plugin Version:** 1.1.0
+- **Supported MyBB Versions:** 1.8.x and later
+- **Minimum PHP Version Required:** 7.4+
 
 ## Install
 
@@ -50,7 +76,7 @@ The plugin works with **English** and **Turkish** words. You should add words sp
 
 Code block that needs to be edited:
 
-https://github.com/tedem/mybb-headlize/blob/6f4bf9b563d86b4a914bf147f6015e91fa993474/inc/plugins/headlize.php#L161-L168
+https://github.com/tedem/mybb-headlize/blob/a4f7d247e8b5dbf37bdaf0de35e9074b43f0bee7/inc/plugins/headlize.php#L164-L176
 
 ### Ignoring
 
