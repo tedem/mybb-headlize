@@ -31,6 +31,7 @@ if (version_compare(PHP_VERSION, '7.4.0', '<')) {
 // Hooks
 $plugins->add_hook('datahandler_post_insert_thread', 'headlize_convert_title');
 $plugins->add_hook('datahandler_post_insert_thread_post', 'headlize_convert_title');
+$plugins->add_hook('datahandler_post_insert_post', 'headlize_convert_title');
 $plugins->add_hook('datahandler_post_update_thread', 'headlize_convert_title');
 $plugins->add_hook('datahandler_post_update', 'headlize_convert_title');
 
