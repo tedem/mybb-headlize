@@ -53,7 +53,7 @@ function headlize_info(): array
         'author' => TEDEM_HEADLIZE_AUTHOR,
         'authorsite' => 'https://tedem.dev/',
         'version' => TEDEM_HEADLIZE_VERSION,
-        'codename' => TEDEM_HEADLIZE_AUTHOR . '_' . TEDEM_HEADLIZE_ID,
+        'codename' => headlize_codename(),
         'compatibility' => '18*',
     ];
 }
@@ -304,7 +304,7 @@ function headlize_donation_close_button(): string
     global $mybb;
 
     $link = 'index.php?module=config-plugins&'
-        . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID
+        . headlize_codename('-')
         . '=deactivate-donation&my_post_key='
         . $mybb->post_code;
 
@@ -350,7 +350,7 @@ function headlize_donation_edit(): void
 
         $plugins = $cache->read(TEDEM_HEADLIZE_AUTHOR);
 
-        if ($mybb->get_input(TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID) === 'deactivate-donation') {
+        if ($mybb->get_input(headlize_codename('-')) === 'deactivate-donation') {
             $plugins[TEDEM_HEADLIZE_ID]['donation'] = 0;
 
             $cache->update(TEDEM_HEADLIZE_AUTHOR, $plugins);
@@ -359,6 +359,21 @@ function headlize_donation_edit(): void
             admin_redirect('index.php?module=config-plugins');
         }
     }
+}
+
+/**
+ * Generates the plugin codename.
+ *
+ * This function constructs the plugin codename by concatenating the author
+ * and plugin ID with a specified separator.
+ *
+ * @param string $separator The separator to use between author and ID. Default is '_'.
+ *
+ * @return string The generated plugin codename.
+ */
+function headlize_codename(string $separator = '_'): string
+{
+    return TEDEM_HEADLIZE_AUTHOR . $separator . TEDEM_HEADLIZE_ID;
 }
 
 /**
