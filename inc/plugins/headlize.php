@@ -46,16 +46,9 @@ $plugins->add_hook('datahandler_post_update', 'headlize_convert_title');
  */
 function headlize_info(): array
 {
-    $description = headlize_translate('plugin_description');
-    $description = '<div style="margin-top: 1em;">' . $description . '</div>';
-
-    if (headlize_donation_status()) {
-        $description .= headlize_donation();
-    }
-
     return [
         'name' => TEDEM_HEADLIZE_NAME,
-        'description' => $description,
+        'description' => headlize_description(),
         'website' => 'https://mybbcode.com/',
         'author' => TEDEM_HEADLIZE_AUTHOR,
         'authorsite' => 'https://tedem.dev/',
@@ -235,6 +228,28 @@ function headlize_title_case($title): string
     $words[$lastWordKey] = rtrim($words[$lastWordKey], '.');
 
     return $db->escape_string(implode(' ', $words));
+}
+
+/**
+ * Generates the plugin description with donation message if applicable.
+ *
+ * @return string The complete plugin description.
+ */
+function headlize_description(): string
+{
+    // Plugin description
+    $description = headlize_translate('plugin_description');
+
+    // Wrap description in a div for styling
+    $description = '<div style="margin-top: 1em;">' . $description . '</div>';
+
+    // Append donation message
+    if (headlize_donation_status()) {
+        $description .= headlize_donation();
+    }
+
+    // Return the final description
+    return $description;
 }
 
 /**
