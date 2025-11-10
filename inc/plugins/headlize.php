@@ -344,7 +344,7 @@ function headlize_translate(string $key): string
     // Internationalized texts
     static $texts = [
         'direct_access_error' => '(-_*) This file cannot be accessed directly.',
-        'php_version_error' => '(-_*) Headlize requires PHP version 7.4.0 or higher. You are running PHP version %s.',
+        'php_version_error' => '(T_T) Headlize requires PHP version 7.4.0 or higher. You are running PHP version %s.',
         'plugin_description' => 'Automatically converts and saves thread titles in APA-style title case.',
         'donation_message' => 'If you find this plugin useful, consider supporting its development via %s or %s %s',
         'donation_flash_success' => 'The donation message has been successfully closed.',
