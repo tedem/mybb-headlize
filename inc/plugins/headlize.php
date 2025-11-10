@@ -142,6 +142,9 @@ function headlize_convert_title(&$datahandler): void
 
     if (isset($datahandler->post_insert_data['subject'])) {
         $datahandler->post_insert_data['subject'] = headlize_title_case($datahandler->post_insert_data['subject']);
+
+        // Add "RE:" prefix if the post is a reply
+        $datahandler->post_insert_data['subject'] = headlize_add_reply_prefix($datahandler->post_insert_data['subject']);
     }
 
     if (isset($datahandler->thread_update_data['subject'])) {
@@ -150,6 +153,9 @@ function headlize_convert_title(&$datahandler): void
 
     if (isset($datahandler->post_update_data['subject'])) {
         $datahandler->post_update_data['subject'] = headlize_title_case($datahandler->post_update_data['subject']);
+
+        // Add "RE:" prefix if the post is a reply
+        $datahandler->post_update_data['subject'] = headlize_add_reply_prefix($datahandler->post_update_data['subject']);
     }
 }
 
@@ -225,6 +231,23 @@ function headlize_title_case($title): string
     $words[$lastWordKey] = rtrim($words[$lastWordKey], '.');
 
     return $db->escape_string(implode(' ', $words));
+}
+
+/**
+ * Adds a reply prefix to the subject if it doesn't already exist.
+ *
+ * @param string $subject The original subject.
+ * @param string $prefix  The prefix to add (default is 'RE:').
+ *
+ * @return string The subject with the reply prefix added if it was not present.
+ */
+function headlize_add_reply_prefix(string $subject, string $prefix = 'RE:'): string
+{
+    if (mb_strpos($subject, $prefix) !== 0) {
+        return $prefix . ' ' . $subject;
+    }
+
+    return $subject;
 }
 
 /**
