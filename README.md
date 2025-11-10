@@ -19,6 +19,7 @@ This ensures consistent, professional-looking thread titles throughout your foru
 - Ignores words enclosed between double underscores (`__word__`) to preserve specific terms.
 - Saves the formatted title directly in the MyBB database.
 - Supports acronyms, technical terms, and common exceptions to ensure correct capitalization (e.g., `API`, `PHP`, `MyBB`).
+- Adds "RE:" prefix to titles of reply posts if not already present, while maintaining title case formatting.
 
 ---
 
