@@ -3,13 +3,17 @@
 declare(strict_types=1);
 
 /**
- * Headlize
+ * Headlize Plugin for MyBB
  *
- * Automatically converts and saves thread titles in APA-style title case.
+ * A MyBB plugin that automatically converts thread titles to title case (APA style).
  *
- * @author Medet "tedem" Erdal <hello@tedem.dev>
+ * @author tedem <https://tedem.dev/>
  *
- * @version 1.0.1
+ * @version 1.1.0
+ *
+ * @see https://github.com/tedem/mybb-headlize
+ *
+ * @license MIT
  */
 
 // Disallow direct access to this file for security reasons
