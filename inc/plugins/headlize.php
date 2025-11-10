@@ -270,32 +270,45 @@ function headlize_add_reply_prefix(string $subject, string $prefix = 'RE:'): str
 }
 
 /**
- * Generates a donation message with links to support the developer.
+ * Generates the donation message for the plugin description.
  *
- * This function creates a donation message that includes links to "Buy me a coffee" and "KO-FI"
- * for supporting the developer. It also includes a link to close the donation message.
- *
- * @global object $mybb The MyBB core object.
+ * This function creates a donation message with links to support the plugin's development.
  *
  * @return string The HTML string containing the donation message.
  */
 function headlize_donation(): string
 {
-    global $mybb;
-
     headlize_donation_edit();
-
-    $closeLink = 'index.php?module=config-plugins&' . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID . '=deactivate-donation&my_post_key=' . $mybb->post_code;
-    $closeButton = '&mdash; <a href="' . $closeLink . '"><b>Close Donation</b></a>';
 
     $message = \sprintf(
         headlize_translate('donation_message'),
         '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>',
         '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>',
-        $closeButton
+        headlize_donation_close_button(),
     );
 
     return '<div style="margin-top: 1em;">' . $message . '</div>';
+}
+
+/**
+ * Generates a close button for the donation message.
+ *
+ * This function creates a link that allows users to close the donation message.
+ *
+ * @global object $mybb The MyBB core object.
+ *
+ * @return string The HTML string containing the close button link.
+ */
+function headlize_donation_close_button(): string
+{
+    global $mybb;
+
+    $link = 'index.php?module=config-plugins&'
+        . TEDEM_HEADLIZE_AUTHOR . '-' . TEDEM_HEADLIZE_ID
+        . '=deactivate-donation&my_post_key='
+        . $mybb->post_code;
+
+    return '&mdash; <a href="' . $link . '"><b>Close Donation</b></a>';
 }
 
 /**
