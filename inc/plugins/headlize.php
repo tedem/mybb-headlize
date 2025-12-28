@@ -177,6 +177,9 @@ function headlize_title_case($title): string
 
     $titleCaseExceptions = [
         // Prefixes and suffixes
+
+        // 'RE:' prefix retained for MyBB 1.8 compatibility, deprecated in MyBB 1.9.
+        // Reference: https://github.com/mybb/mybb/pull/5226
         'RE:',
 
         // Common acronyms and abbreviations
