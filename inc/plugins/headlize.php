@@ -265,8 +265,7 @@ function headlize_donation(): string
 
     $message = \sprintf(
         headlize_translate('donation_message'),
-        '<a href="https://www.buymeacoffee.com/tedem"><b>Buy me a coffee</b></a>',
-        '<a href="https://ko-fi.com/tedem"><b>KO-FI</b></a>',
+        '<a href="https://github.com/sponsors/tedem"><b>GitHub Sponsors</b></a>',
         headlize_donation_close_button(),
     );
 
@@ -376,7 +375,7 @@ function headlize_translate(string $key): string
         'direct_access_error'    => '(-_*) This file cannot be accessed directly.',
         'php_version_error'      => '(T_T) Headlize requires PHP version 8.2.0 or higher. You are running PHP version %s.',
         'plugin_description'     => 'Automatically converts thread titles to APA-style title case.',
-        'donation_message'       => 'If you find this plugin useful, consider supporting its development via %s or %s %s',
+        'donation_message'       => 'If you find this plugin helpful, consider supporting it on %s. Thank you! %s',
         'donation_flash_success' => 'The donation message has been successfully closed.',
     ];
 
